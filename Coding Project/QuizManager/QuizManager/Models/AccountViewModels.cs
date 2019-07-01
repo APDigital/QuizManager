@@ -1,51 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Data.OleDb;
+using System.IO;
 
 namespace QuizManager.Models
 {
-    public class ExternalLoginConfirmationViewModel
-    {
-        [Required]
-        [Display(Name = "Email")]
-        public string Email { get; set; }
-    }
-
-    public class ExternalLoginListViewModel
-    {
-        public string ReturnUrl { get; set; }
-    }
-
-    public class SendCodeViewModel
-    {
-        public string SelectedProvider { get; set; }
-        public ICollection<System.Web.Mvc.SelectListItem> Providers { get; set; }
-        public string ReturnUrl { get; set; }
-        public bool RememberMe { get; set; }
-    }
-
-    public class VerifyCodeViewModel
-    {
-        [Required]
-        public string Provider { get; set; }
-
-        [Required]
-        [Display(Name = "Code")]
-        public string Code { get; set; }
-        public string ReturnUrl { get; set; }
-
-        [Display(Name = "Remember this browser?")]
-        public bool RememberBrowser { get; set; }
-
-        public bool RememberMe { get; set; }
-    }
-
-    public class ForgotViewModel
-    {
-        [Required]
-        [Display(Name = "Email")]
-        public string Email { get; set; }
-    }
-
     public class LoginViewModel
     {
         [Required]
@@ -68,45 +27,45 @@ namespace QuizManager.Models
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
+        [Required]
+        [Display(Name = "Role")]
+        public string Role { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
 
-        [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
-        public string ConfirmPassword { get; set; }
     }
-
-    public class ResetPasswordViewModel
+    public class PrecompileUsers
     {
-        [Required]
-        [EmailAddress]
-        [Display(Name = "Email")]
-        public string Email { get; set; }
-
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
-        [DataType(DataType.Password)]
-        [Display(Name = "Password")]
-        public string Password { get; set; }
-
-        [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
-        public string ConfirmPassword { get; set; }
-
-        public string Code { get; set; }
-    }
-
-    public class ForgotPasswordViewModel
-    {
-        [Required]
-        [EmailAddress]
-        [Display(Name = "Email")]
-        public string Email { get; set; }
+        public List<RegisterViewModel> Users = new List<RegisterViewModel>();
+        public IEnumerable<string> GetAllUsers()
+        {
+            FileStream file = new FileStream("C:/Users/APearson/Documents/Apprenticeship Evidence/Year 2/Coding Project/Develop/PrecompileUsers.csv", FileMode.Open);
+            StreamReader streamReader = new StreamReader(file);
+            string headerLine = streamReader.ReadLine();
+            string line;
+            while ((line = streamReader.ReadLine()) != null)
+            {
+                yield return line;
+            }
+            streamReader.Close();
+        }
+        public void ConvertCSVToUsers()
+        {
+           var csvLines = GetAllUsers();
+            foreach (string line in csvLines)
+            {
+                string[] userProperties = line.Split(',');
+                RegisterViewModel user = new RegisterViewModel()
+                {
+                    Email = userProperties[0],
+                    Role = userProperties[1],
+                    Password = userProperties[2]
+                };
+                Users.Add(user);
+            }
+        }
     }
 }

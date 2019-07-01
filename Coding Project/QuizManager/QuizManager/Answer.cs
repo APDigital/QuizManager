@@ -20,7 +20,7 @@ namespace QuizManager
         public int QuestionId { get; set; }
         public int Correct { get; set; }
         public bool IsCorrect { get; set; }
-    
+
         public virtual Question Question { get; set; }
         public bool IsSelected { get; set; }
     }
