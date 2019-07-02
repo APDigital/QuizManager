@@ -18,12 +18,14 @@
             {
                 @Html.AntiForgeryToken()
                 <div class="form-group">
-                    <p class="col-md-4 control-label">Search for Quiz by Title</p>
-                    <div class="col-md-4">
-                        @Html.TextBoxFor(m => m.SearchByQuizTitle, new { @class = "form-control" })
-                    </div>
-                    <div class=" col-md-4">
-                        <input type="submit" class="btn btn-default" value="Search" />
+                    <p class="col-md-12 control-label">Search for Quiz by Title</p>
+                    <div class="col-md-12 searchBar">
+                        <div class="col-md-6">
+                            @Html.TextBoxFor(m => m.SearchByQuizTitle, new { @class = "form-control" })
+                        </div>
+                        <div class="col-md-4">
+                            <input type="submit" class="btn btn-default" value="Search" />
+                        </div>
                     </div>
                 </div>
             }

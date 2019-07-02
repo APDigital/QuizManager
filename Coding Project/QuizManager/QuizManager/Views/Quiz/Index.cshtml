@@ -1,7 +1,16 @@
-﻿
+﻿@using QuizManager.Models
+@model TakeQuizViewModel
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>@Model.CurrentQuiz.Title</h2>
 
+<h3>@Model.CurrentQuiz.Description</h3>
+
+<h3>Pass Mark: @Model.CurrentQuiz.PassMark</h3>
+<h4>Author: @Model.CurrentQuiz.Author</h4>
+
+    <button class="btn btn-info">
+        @Html.RouteLink("Start Quiz", new { action = "Question", controller = "Quiz", QuizName = Model.CurrentQuiz.Title })
+    </button>

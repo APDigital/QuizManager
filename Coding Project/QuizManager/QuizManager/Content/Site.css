@@ -7,6 +7,7 @@
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+    margin-top: 20px;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -21,4 +22,31 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+a{
+    text-decoration:none !important;
+}
+.navbar-text li{
+    margin: 0 10px;
+}
+.navbar-text a:hover {
+    text-decoration: none;
+}
+    
+.searchBar {
+    display: inline-flex;
+}
+.searchBar div{
+    padding: 0;
+}
+.btn-info{
+    margin: 20px 0;
+    margin-bottom: 60px;
+}
+.btn-info a{
+    color: white !important;
+}
+#checkboxItem{
+    margin: 0 40px;
+    margin-top: 8px;
 }

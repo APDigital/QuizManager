@@ -1,7 +1,51 @@
-﻿
+﻿@using QuizManager.Models
+@model TakeQuizViewModel
 @{
     ViewBag.Title = "QuizFinish";
 }
 
 <h2>QuizFinish</h2>
+<h3>@Model.FinalScore</h3>
+@if (User.IsInRole("View") || User.IsInRole("Edit"))
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <td>Question</td>
+                <td>Answer</td>
+                <td>Result</td>
+                <td>Explanation</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.UsersAnswers)
+            {
+                <tr>
+                    <td>@item.Key.Question1</td>
+                    <td>@item.Value.Answer1</td>
+                    @if (item.Value.Correct == 1)
+                    {
+                        <td>Correct</td>
+                    }
+                    else if (item.Value.Correct == 0)
+                    {
+                        <td>Incorrect</td>
+                    }
+                    <td>@item.Value.Explanation</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+@using (Html.BeginForm("Index", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-info" value="Home" />
+        </div>
+    </div>
+
+
+}
 

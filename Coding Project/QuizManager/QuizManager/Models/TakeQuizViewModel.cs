@@ -19,6 +19,7 @@ namespace QuizManager.Models
 
         private QuizManagerEntities QuizEntities = new QuizManagerEntities();
         public Quiz CurrentQuiz { get; set; }
+        public Question CurrentQuestion { get; set; }
         public List<Answer> CurrentAnswers { get; set; }
         public Dictionary<int,Question> AvailableQuestionsByNumber { get; set; }
         public Dictionary<Question,Answer> UsersAnswers { get; set; }
