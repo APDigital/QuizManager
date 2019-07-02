@@ -24,11 +24,13 @@ namespace QuizManager.Models.Tests
         }
 
         [TestMethod()]
-        public void GetQuestionTest()
+        public void GetRandomQuestionTest()
         {
             model.GetListOfQuestionsByQuiz("Test Quiz");
-            var question = model.GetQuestion();
-            Assert.AreEqual(question.Id, 1);
+            var question1 = model.GetRandomQuestion();
+            model.RemoveQuestionFromAvailableList(question1);
+            var question2 = model.GetRandomQuestion();
+            Assert.AreNotEqual(question1.Id, question2.Id);
         }
 
         [TestMethod()]
@@ -36,8 +38,10 @@ namespace QuizManager.Models.Tests
         {
             model.GetListOfQuestionsByQuiz("Test Quiz");
             var availableQuestions = model.AvailableQuestionsByNumber;
+            int startCount = availableQuestions.Count();
             model.RemoveQuestionFromAvailableList(availableQuestions.Where(x => x.Key == 1).Single().Value);
-            Assert.AreEqual(model.AvailableQuestionsByNumber.Count, 0);
+            int endCount = availableQuestions.Count();
+            Assert.AreEqual(startCount-1,endCount);
         }
 
         [TestMethod()]
@@ -45,8 +49,8 @@ namespace QuizManager.Models.Tests
         {
             model.GetListOfQuestionsByQuiz("Test Quiz");
             var currentQuestion = model.AvailableQuestionsByNumber.First().Value;
-            var currentAnswers = currentQuestion.Answers.ToList();
-            currentAnswers.First().IsSelected = true;
+            model.CurrentAnswers = currentQuestion.Answers.ToList();
+            model.CurrentAnswers.First().IsSelected = true;
             model.StoreQuestionToUsersAnswers(currentQuestion);
             Assert.AreEqual(model.UsersAnswers.First().Key, currentQuestion);
         }
@@ -56,8 +60,8 @@ namespace QuizManager.Models.Tests
         {
             model.GetListOfQuestionsByQuiz("Test Quiz");
             var currentQuestion = model.AvailableQuestionsByNumber.First().Value;
-            var currentAnswers = currentQuestion.Answers.ToList();
-            currentAnswers.Last().IsSelected = true;
+            model.CurrentAnswers = currentQuestion.Answers.ToList();
+            model.CurrentAnswers.Last().IsSelected = true;
             model.StoreQuestionToUsersAnswers(currentQuestion);
 
             model.CheckUsersAnswers(model.UsersAnswers);
@@ -68,8 +72,8 @@ namespace QuizManager.Models.Tests
         {
             model.GetListOfQuestionsByQuiz("Test Quiz");
             var currentQuestion = model.AvailableQuestionsByNumber.First().Value;
-            var currentAnswers = currentQuestion.Answers.ToList();
-            currentAnswers.First().IsSelected = true;
+            model.CurrentAnswers = currentQuestion.Answers.ToList();
+            model.CurrentAnswers.First().IsSelected = true;
             model.StoreQuestionToUsersAnswers(currentQuestion);
 
             model.CheckUsersAnswers(model.UsersAnswers);

@@ -11,13 +11,14 @@ namespace QuizManager.Models.Tests
     [TestClass()]
     public class QuizViewModelTests
     {
-        QuizManagerEntities entities = new QuizManagerEntities();
+        //QuizManagerTests.QuizManagerEntities1 entities = new QuizManagerTests.QuizManagerEntities1();
         QuizViewModel model = new QuizViewModel();
 
         [TestMethod()]
         public void GetAllAvailableQuizzesTest()
         {
-           List<Quiz> listOfAllQuizzes = model.GetAllAvailableQuizzes();
+            model.GetAllAvailableQuizzes();
+           List<Quiz> listOfAllQuizzes = model.ListOfAllQuizes;
             Assert.AreEqual(listOfAllQuizzes.First().Title, "Test Quiz");
         }
 
@@ -26,22 +27,6 @@ namespace QuizManager.Models.Tests
         {
             Quiz searchedForByTitle = model.GetQuizByTitle("Test Quiz");
             Assert.AreEqual(searchedForByTitle.Title, "Test Quiz");
-        }
-
-        [TestMethod()]
-        public void GetAllAvailableAnswersForQuestionTest()
-        {
-            List<Answer> ListOfAllAvailableAnswersForQuestion = model.GetAllAvailableAnswersForQuestion(1);
-            Assert.AreEqual(ListOfAllAvailableAnswersForQuestion.Count(), 4);
-        }
-
-        [TestMethod()]
-        public void GetCorrectAnswerTest()
-        {
-            Answer correctAnswer = model.GetCorrectAnswer(1);
-            Assert.AreEqual(correctAnswer.Answer1, "Yes");
-            Answer incorrectAnswer = model.GetCorrectAnswer(3);
-            Assert.AreEqual(incorrectAnswer.Answer1, "No");
         }
     }
 }

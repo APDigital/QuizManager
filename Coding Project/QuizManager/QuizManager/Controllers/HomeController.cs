@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuizManager.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,23 +9,21 @@ namespace QuizManager.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        [Authorize(Roles = "Restricted, Edit , View")]
+        public ActionResult Index(QuizViewModel model)
         {
-            return View();
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            if (model.SearchByQuizTitle == null)
+            {
+                model = new QuizViewModel();
+                model.GetAllAvailableQuizzes();
+            }
+            else
+            {
+                List<Quiz> newList = new List<Quiz>();
+                newList.Add(model.GetQuizByTitle(model.SearchByQuizTitle));
+                model.ListOfAllQuizes = newList;
+            }
+            return View(model);
         }
     }
 }

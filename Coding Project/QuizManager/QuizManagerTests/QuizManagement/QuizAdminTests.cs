@@ -29,7 +29,8 @@ namespace QuizManager.QuizManagement.Tests
                 Category = entities.Categories.Where(x => x.Id == 1).Single()
             };
             admin.AddQuiz(newQuiz);
-            List<Quiz> quizzes = model.GetAllAvailableQuizzes();
+            model.GetAllAvailableQuizzes();
+            List<Quiz> quizzes = model.ListOfAllQuizes;
             Assert.AreEqual(quizzes.Last().Title, "New Test Quiz");
         }
 

@@ -39,10 +39,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\MSTest.TestFramework.1.2.0\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.dll</HintPath>
@@ -60,74 +60,47 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Answer.cs">
-      <DependentUpon>QuizManagerDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AspNetRole.cs">
-      <DependentUpon>QuizManagerDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AspNetUser.cs">
-      <DependentUpon>QuizManagerDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AspNetUserClaim.cs">
-      <DependentUpon>QuizManagerDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AspNetUserLogin.cs">
-      <DependentUpon>QuizManagerDB.tt</DependentUpon>
+      <DependentUpon>QuizManagerTESTEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Category.cs">
-      <DependentUpon>QuizManagerDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="C__MigrationHistory.cs">
-      <DependentUpon>QuizManagerDB.tt</DependentUpon>
+      <DependentUpon>QuizManagerTESTEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\QuizViewModelTests.cs" />
     <Compile Include="Models\TakeQuizViewModelTests.cs" />
     <Compile Include="Question.cs">
-      <DependentUpon>QuizManagerDB.tt</DependentUpon>
+      <DependentUpon>QuizManagerTESTEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Quiz.cs">
-      <DependentUpon>QuizManagerDB.tt</DependentUpon>
+      <DependentUpon>QuizManagerTESTEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="QuizManagement\QuizAdminTests.cs" />
-    <Compile Include="QuizManagerDB.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>QuizManagerDB.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="QuizManagerDB.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>QuizManagerDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="QuizManagerDB.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>QuizManagerDB.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuizManagerTESTEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuizManagerTESTEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="QuizManagerTESTEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuizManagerTESTEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="QuizManagerTESTEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuizManagerTESTEntities.edmx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
     <None Include="packages.config" />
-    <EntityDeploy Include="QuizManagerDB.edmx">
+    <EntityDeploy Include="QuizManagerTESTEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>QuizManagerDB.Designer.cs</LastGenOutput>
+      <LastGenOutput>QuizManagerTESTEntities.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="QuizManagerDB.edmx.diagram">
-      <DependentUpon>QuizManagerDB.edmx</DependentUpon>
+    <None Include="QuizManagerTESTEntities.edmx.diagram">
+      <DependentUpon>QuizManagerTESTEntities.edmx</DependentUpon>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="QuizManagerDB.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>QuizManagerDB.Context.cs</LastGenOutput>
-      <DependentUpon>QuizManagerDB.edmx</DependentUpon>
-    </Content>
-    <Content Include="QuizManagerDB.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>QuizManagerDB.edmx</DependentUpon>
-      <LastGenOutput>QuizManagerDB.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -137,6 +110,18 @@
       <Project>{FDF0B472-D69E-4E04-B9E9-6B50D4B5B02B}</Project>
       <Name>QuizManager</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="QuizManagerTESTEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QuizManagerTESTEntities.edmx</DependentUpon>
+      <LastGenOutput>QuizManagerTESTEntities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="QuizManagerTESTEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QuizManagerTESTEntities.edmx</DependentUpon>
+      <LastGenOutput>QuizManagerTESTEntities.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

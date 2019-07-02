@@ -8,30 +8,20 @@ namespace QuizManager.Models
     public class QuizViewModel
     {
         private QuizManagerEntities QuizEntities = new QuizManagerEntities();
+        public string SearchByQuizTitle { get; set; }
+        public List<Quiz> ListOfAllQuizes { get; set; }
 
         public QuizViewModel()
         {
 
         }
-        public List<Quiz> GetAllAvailableQuizzes()
+        public void GetAllAvailableQuizzes()
         {
-            List<Quiz> placeholder = new List<Quiz>();
-            return placeholder;
+            ListOfAllQuizes = QuizEntities.Quizs.ToList();
         }
         public Quiz GetQuizByTitle(string quizTitle)
         {
-            Quiz placeholder = new Quiz();
-            return placeholder;
-        }
-        public List<Answer> GetAllAvailableAnswersForQuestion(int questionId)
-        {
-            List<Answer> placeholder = new List<Answer>();
-            return placeholder;
-        }
-        public Answer GetCorrectAnswer(int questionId)
-        {
-            Answer placeholder = new Answer();
-            return placeholder;
+            return QuizEntities.Quizs.Where(x => x.Title == quizTitle).Single();
         }
     }
 }
