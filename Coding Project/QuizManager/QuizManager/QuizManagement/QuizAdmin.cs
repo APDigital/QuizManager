@@ -49,7 +49,8 @@ namespace QuizManager.QuizManagement
             QuizEntities.Questions.Add(question);
             QuizEntities.SaveChanges();
 
-            foreach (var answer in answers)
+            // run clean list
+            foreach (var answer in CleanList(answers))
             {
                 List<Answer> currentListOfAnswers = QuizEntities.Answers.ToList();
                 answer.QuestionId = question.Id;
@@ -66,6 +67,18 @@ namespace QuizManager.QuizManagement
                 QuizEntities.Answers.Add(answer);
                 QuizEntities.SaveChanges();
             }
+        }
+        private List<Answer> CleanList(List<Answer> answerList)
+        { 
+            List<Answer> cleanAnswerList = new List<Answer>();
+            foreach (var answer in answerList)
+            {
+                if (answer.Answer1 != null)
+                {
+                    cleanAnswerList.Add(answer);
+                }
+            }
+            return cleanAnswerList;
         }
     }
 }

@@ -11,6 +11,6 @@
 <h3>Pass Mark: @Model.CurrentQuiz.PassMark</h3>
 <h4>Author: @Model.CurrentQuiz.Author</h4>
 
-    <button class="btn btn-info">
+    <button class="btn btn-primary-click">
         @Html.RouteLink("Start Quiz", new { action = "Question", controller = "Quiz", QuizName = Model.CurrentQuiz.Title })
     </button>

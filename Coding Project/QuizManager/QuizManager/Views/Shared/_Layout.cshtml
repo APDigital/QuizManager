@@ -22,7 +22,7 @@
                     <li class="nav-item">@Html.ActionLink("Home", "Index", "Home")</li>
                     @if (User.IsInRole("Edit"))
                     {
-                        <li class="nav-item">@Html.ActionLink("Add Quizes", "AddQuiz", "Home")</li>
+                        <li class="nav-item">@Html.ActionLink("Add Quizes", "AddQuiz", "QuizAdmin")</li>
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")

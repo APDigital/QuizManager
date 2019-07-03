@@ -1,0 +1,76 @@
+﻿@using QuizManager.Models
+@model QuizViewModel
+@{
+    ViewBag.Title = "Add Quiz";
+}
+
+<h2>Add Category</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            @using (Html.BeginForm("AddCategory", "QuizAdmin", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    @Html.LabelFor(m => m.NewCategory.Title, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.NewCategory.Title, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" class="btn btn-secondary-click" value="Add New Category" />
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<h2>Add Quiz</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            @using (Html.BeginForm("AddQuiz", "QuizAdmin", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    @Html.LabelFor(m => m.NewQuizItem.Title, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.NewQuizItem.Title, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.NewQuizItem.Description, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.NewQuizItem.Description, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.NewQuizItem.Author, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.NewQuizItem.Author, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.NewQuizItem.PassMark, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.NewQuizItem.PassMark, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <p class="col-md-2 control-label">Category</p>
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(m => m.NewQuizItem.Category.Title, new SelectList(Model.Categories.Select(m => m.Title)), "Select Category", new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" class="btn btn-primary-click" value="Add New Quiz" />
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+

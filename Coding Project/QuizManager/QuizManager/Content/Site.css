@@ -39,14 +39,21 @@ a{
 .searchBar div{
     padding: 0;
 }
-.btn-info{
+.btn-primary-click{
     margin: 20px 0;
     margin-bottom: 60px;
 }
-.btn-info a{
+.btn-primary-click a{
     color: white !important;
 }
 #checkboxItem{
     margin: 0 40px;
     margin-top: 8px;
+}
+#AddQuestionBtn{
+    margin-top: 40px;
+    margin-bottom: -20px;
+}
+#search{
+    margin-left: 10px;
 }

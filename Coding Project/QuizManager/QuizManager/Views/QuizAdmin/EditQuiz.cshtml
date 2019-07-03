@@ -1,0 +1,90 @@
+﻿@model QuizManager.Quiz
+
+@{
+    ViewBag.Title = "EditQuiz";
+}
+
+<h2>Edit Quiz</h2>
+
+@using (Html.BeginForm("EditQuiz", "QuizAdmin", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <h4>Quiz Details</h4>
+    <hr />
+    <div class="form-horizontal d-inline-flex col-12">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.DateCreated)
+        <div class="form-group col-2">
+            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-12">
+                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <div class="form-group col-3">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-12">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        @Html.HiddenFor(model => model.Author)
+        <div class="form-group col-2">
+            @Html.LabelFor(model => model.PassMark, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-12">
+                @Html.EditorFor(model => model.PassMark, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <div class="form-group col-3">
+            @Html.LabelFor(model => model.Category, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-12">
+                @Html.DropDownListFor(m => m.Category.Title, new SelectList(Model.Categories.Select(m => m.Title)), Model.Category.Title, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group col-3">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-primary-click" />
+            </div>
+        </div>
+    </div>
+    <hr />
+    <h4>Question Details</h4>
+    <br />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Question</th>
+                <th>Answer</th>
+                <th>Explanation</th>
+                <th>Correct</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var question in Model.Questions)
+            {
+                <tr>
+                    <td>@question.Question1</td>
+                    <td>
+                        @foreach (var answer in question.Answers)
+                        {
+                            <p>@answer.Answer1</p>
+                        }
+                    </td>
+                    <td>
+                        @foreach (var answer in question.Answers)
+                        {
+                            <p>@answer.Explanation</p>
+                        }
+                    </td>
+                    <td>
+                        @foreach (var answer in question.Answers)
+                        {
+                            <p>@answer.Correct</p>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+

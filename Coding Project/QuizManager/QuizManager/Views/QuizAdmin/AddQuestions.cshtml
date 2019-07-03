@@ -1,0 +1,111 @@
+﻿@using QuizManager.Models
+@model QuizViewModel
+@{
+    ViewBag.Title = "Add Questions";
+}
+
+<h2>Add Questions</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 ">
+            @using (Html.BeginForm("AddQuestions", "QuizAdmin", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "CheckboxControl" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-group ">
+                    @Html.LabelFor(m => m.Question, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.Question.Question1, new { @class = "form-control" })
+                    </div>
+                </div>
+                <hr />
+                <div class="form-group d-inline-flex">
+                    <p class="col-md-2 control-label">Answer</p>
+                    <div class="col-md-5">
+                        @Html.TextBoxFor(m => m.ArrayOfAnswers[0].Answer1, new { @class = "form-control" })
+                    </div>
+                    <p class="col-md-2 control-label">Explanation</p>
+                    <div class="col-md-5">
+                        @Html.TextBoxFor(m => m.ArrayOfAnswers[0].Explanation, new { @class = "form-control" })
+                    </div>
+                    <p class="col-md-2 control-label">Correct</p>
+                    <div class="col-md-2">
+                        @Html.CheckBoxFor(m => m.ArrayOfAnswers[0].IsCorrect, new { @class = "" })
+                    </div>
+                </div>
+                <div class="form-group  d-inline-flex">
+                    <p class="col-md-2 control-label">Answer</p>
+                    <div class="col-md-5">
+                        @Html.TextBoxFor(m => m.ArrayOfAnswers[1].Answer1, new { @class = "form-control" })
+                    </div>
+                    <p class="col-md-2 control-label">Explanation</p>
+                    <div class="col-md-5">
+                        @Html.TextBoxFor(m => m.ArrayOfAnswers[1].Explanation, new { @class = "form-control" })
+                    </div>
+                    <p class="col-md-2 control-label">Correct</p>
+                    <div class="col-md-2">
+                        @Html.CheckBoxFor(m => m.ArrayOfAnswers[1].IsCorrect, new { @class = "" })
+                    </div>
+                </div>
+                <div class="form-group  d-inline-flex">
+                    <p class="col-md-2 control-label">Answer</p>
+                    <div class="col-md-5">
+                        @Html.TextBoxFor(m => m.ArrayOfAnswers[2].Answer1, new { @class = "form-control" })
+                    </div>
+                    <p class="col-md-2 control-label">Explanation</p>
+                    <div class="col-md-5">
+                        @Html.TextBoxFor(m => m.ArrayOfAnswers[2].Explanation, new { @class = "form-control" })
+                    </div>
+                    <p class="col-md-2 control-label">Correct</p>
+                    <div class="col-md-2">
+                        @Html.CheckBoxFor(m => m.ArrayOfAnswers[2].IsCorrect, new { @class = "" })
+                    </div>
+                </div>
+                <div class="form-group  d-inline-flex">
+                    <p class="col-md-2 control-label">Answer</p>
+                    <div class="col-md-5">
+                        @Html.TextBoxFor(m => m.ArrayOfAnswers[3].Answer1, new { @class = "form-control" })
+                    </div>
+                    <p class="col-md-2 control-label">Explanation</p>
+                    <div class="col-md-5">
+                        @Html.TextBoxFor(m => m.ArrayOfAnswers[3].Explanation, new { @class = "form-control" })
+                    </div>
+                    <p class="col-md-2 control-label">Correct</p>
+                    <div class="col-md-2">
+                        @Html.CheckBoxFor(m => m.ArrayOfAnswers[3].IsCorrect, new { @class = "" })
+                    </div>
+                </div>
+                <div class="form-group  d-inline-flex">
+                    <p class="col-md-2 control-label">Answer</p>
+                    <div class="col-md-5">
+                        @Html.TextBoxFor(m => m.ArrayOfAnswers[4].Answer1, new { @class = "form-control" })
+                    </div>
+                    <p class="col-md-2 control-label">Explanation</p>
+                    <div class="col-md-5">
+                        @Html.TextBoxFor(m => m.ArrayOfAnswers[4].Explanation, new { @class = "form-control" })
+                    </div>
+                    <p class="col-md-2 control-label">Correct</p>
+                    <div class="col-md-2">
+                        @Html.CheckBoxFor(m => m.ArrayOfAnswers[4].IsCorrect, new { @class = "" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" class="btn btn-secondary-click" value="Add Question" id="AddQuestionBtn" />
+                    </div>
+                </div>
+            }
+            <br />
+            @using (Html.BeginForm("FinishQuizCreation", "QuizAdmin", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" class="btn btn-primary-click" value="Finish Creating Quiz" />
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/custom.js"></script>
