@@ -11,7 +11,6 @@ namespace QuizManager.Models.Tests
     [TestClass()]
     public class QuizViewModelTests
     {
-        //QuizManagerTests.QuizManagerEntities1 entities = new QuizManagerTests.QuizManagerEntities1();
         QuizViewModel model = new QuizViewModel();
 
         [TestMethod()]

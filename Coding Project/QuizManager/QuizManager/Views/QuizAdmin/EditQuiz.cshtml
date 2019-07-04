@@ -1,4 +1,5 @@
-﻿@model QuizManager.Quiz
+﻿@using QuizManager.Models
+@model EditQuizViewModel
 
 @{
     ViewBag.Title = "EditQuiz";
@@ -14,7 +15,6 @@
     <div class="form-horizontal d-inline-flex col-12">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
-        @Html.HiddenFor(model => model.DateCreated)
         <div class="form-group col-2">
             @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-12">
@@ -27,7 +27,6 @@
                 @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
             </div>
         </div>
-        @Html.HiddenFor(model => model.Author)
         <div class="form-group col-2">
             @Html.LabelFor(model => model.PassMark, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-12">
@@ -42,12 +41,14 @@
         </div>
         <div class="form-group col-3">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-primary-click" />
+                <input type="submit" value="Save Quiz Details" class="btn btn-primary-click" />
             </div>
         </div>
     </div>
+}
+
     <hr />
-    <h4>Question Details</h4>
+        <h4 class="col-md-10">Question Details</h4>
     <br />
     <table class="table">
         <thead>
@@ -79,12 +80,18 @@
                     <td>
                         @foreach (var answer in question.Answers)
                         {
-                            <p>@answer.Correct</p>
+                            if (answer.IsCorrect == true)
+                            {
+                                <p><strong>Correct</strong></p>
+                            }
+                            else
+                            {
+                                <p>Incorrect</p>
+                            }
                         }
                     </td>
+                    <td>@Html.RouteLink("Edit", new { action = "EditQuestions", controller = "QuizAdmin", QuestionId = question.Id, QuizName = Model.Title})</td>
                 </tr>
             }
         </tbody>
     </table>
-}
-

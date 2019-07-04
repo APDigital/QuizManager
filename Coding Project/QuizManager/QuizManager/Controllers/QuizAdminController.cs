@@ -11,22 +11,38 @@ namespace QuizManager.Controllers
     public class QuizAdminController : Controller
     {
         private QuizAdmin quizAdmin = new QuizAdmin();
+        private QuizViewModel quizViewModel = new QuizViewModel();
         [Authorize(Roles = "Edit")]
         // GET: Edit Quiz
-        public ActionResult EditQuiz(Quiz model, string QuizName)
+        public ActionResult EditQuiz(EditQuizViewModel model, string QuizName)
         {
-            QuizViewModel quizViewModel = new QuizViewModel();
-           
             if (model.Id == 0)
             {
-                model = quizViewModel.GetQuizByTitle(QuizName);
-                quizViewModel.CurrentQuiz = model;
+                model.CurrentQuiz = quizViewModel.GetQuizByTitle(QuizName);
+                model.SetQuizVariables(model.CurrentQuiz);
             }
             else
             {
-               
+                model.SaveQuizDetails();
             }
             model.Categories = quizViewModel.Categories;
+            return View(model);
+        }
+
+        [Authorize(Roles = "Edit")]
+        //GET: Edit Questions
+        public ActionResult EditQuestions(EditQuizViewModel model, int QuestionId, string QuizName)
+        {
+            if (model.CurrentQuestion == null)
+            {
+                model.CurrentQuiz = quizViewModel.GetQuizByTitle(QuizName);
+                model.SetQuestionVariables(QuestionId);
+            }
+            else
+            {
+                model.SaveQuestionDetails();
+                return RedirectToAction("EditQuiz", new { QuizName = model.CurrentQuiz.Title });
+            }
             return View(model);
         }
         [Authorize(Roles = "Edit")]

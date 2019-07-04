@@ -33,12 +33,16 @@ namespace QuizManager.QuizManagement
         }
         public void AddCategory(string categoryName)
         {
-            List<Category> currentCategories = QuizEntities.Categories.ToList();
-            Category newCategory = new Category();
-            newCategory.Title = categoryName;
-            newCategory.Id = currentCategories.Last().Id + 1;
-            QuizEntities.Categories.Add(newCategory);
-            QuizEntities.SaveChanges();
+            bool alreadyExists = QuizEntities.Categories.Any(x => x.Title == categoryName);
+            if (alreadyExists == false)
+            {
+                List<Category> currentCategories = QuizEntities.Categories.ToList();
+                Category newCategory = new Category();
+                newCategory.Title = categoryName;
+                newCategory.Id = currentCategories.Last().Id + 1;
+                QuizEntities.Categories.Add(newCategory);
+                QuizEntities.SaveChanges();
+            }
         }
         public void AddQuestionAndAnswers(Question question, List<Answer> answers)
         {
@@ -69,7 +73,7 @@ namespace QuizManager.QuizManagement
             }
         }
         private List<Answer> CleanList(List<Answer> answerList)
-        { 
+        {
             List<Answer> cleanAnswerList = new List<Answer>();
             foreach (var answer in answerList)
             {

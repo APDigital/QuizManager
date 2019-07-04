@@ -65,6 +65,7 @@
     <Compile Include="Category.cs">
       <DependentUpon>QuizManagerTESTEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\EditQuizViewModelTests.cs" />
     <Compile Include="Models\QuizViewModelTests.cs" />
     <Compile Include="Models\TakeQuizViewModelTests.cs" />
     <Compile Include="Question.cs">

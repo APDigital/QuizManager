@@ -57,3 +57,9 @@ a{
 #search{
     margin-left: 10px;
 }
+#EditQuestionBtn{
+    float:right;
+    margin-left:35px;
+    width: 250px;
+    margin-bottom: 10px;
+}

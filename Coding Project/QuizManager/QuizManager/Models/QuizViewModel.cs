@@ -16,7 +16,6 @@ namespace QuizManager.Models
         public Question Question { get; set; }
         public Answer[] ArrayOfAnswers { get; set; }
         public Quiz CurrentQuiz { get; set; }
-        public Quiz EditedQuiz { get; set; }
 
         public QuizViewModel()
         {

@@ -206,6 +206,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\EditQuizViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\QuizViewModel.cs" />
     <Compile Include="Models\TakeQuizViewModel.cs" />
@@ -286,6 +287,7 @@
     <Content Include="Views\QuizAdmin\AddQuiz.cshtml" />
     <Content Include="Views\QuizAdmin\AddQuestions.cshtml" />
     <Content Include="Views\QuizAdmin\EditQuiz.cshtml" />
+    <Content Include="Views\QuizAdmin\EditQuestions.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

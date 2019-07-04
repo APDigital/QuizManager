@@ -1,0 +1,53 @@
+﻿@model QuizManager.Models.EditQuizViewModel
+
+@{
+    ViewBag.Title = "EditQuestions";
+}
+
+<h2>Edit Question</h2>
+
+@using (Html.BeginForm("EditQuestions", "QuizAdmin", new { QuestionId = Model.CurrentQuestion.Id }, FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "CheckboxControl" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(m => m.CurrentQuestion.Id)
+        @Html.HiddenFor(m=>m.CurrentQuiz.Title)
+
+        <div class="form-group">
+            <div class="d-inline-flex">
+                <p>Question</p>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CurrentQuestion.Question1, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+        </div>
+        @for (int i = 0; i < Model.CurrentArrayOfAnswers.Length; i++)
+        {
+            @Html.HiddenFor(m=>m.CurrentArrayOfAnswers[i].Id)
+            <div class="form-group d-inline-flex">
+                <p class="col-md-2 control-label">Answer</p>
+                <div class="col-md-5">
+                    @Html.EditorFor(m => m.CurrentArrayOfAnswers[i].Answer1, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                <p class="col-md-2 control-label">Explanation</p>
+                <div class="col-md-5">
+                    @Html.EditorFor(m => m.CurrentArrayOfAnswers[i].Explanation, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                <p class="col-md-2 control-label">Correct</p>
+                <div class="col-md-2">
+                    @Html.CheckBoxFor(m => m.CurrentArrayOfAnswers[i].IsCorrect, new { @class = "" })
+                </div>
+            </div>
+        }
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-primary-click" />
+            </div>
+        </div>
+    </div>
+}
+
