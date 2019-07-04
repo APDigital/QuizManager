@@ -11,8 +11,8 @@ namespace QuizManager.Models
         public Quiz CurrentQuiz { get; set; }
         public Question CurrentQuestion { get; set; }
         public List<Answer> CurrentAnswers { get; set; }
-        public Dictionary<int,Question> AvailableQuestionsByNumber { get; set; }
-        public Dictionary<Question,Answer> UsersAnswers { get; set; }
+        public Dictionary<int, Question> AvailableQuestionsByNumber { get; set; }
+        public Dictionary<Question, Answer> UsersAnswers { get; set; }
         public string FinalScore { get; set; }
         private QuizViewModel quizViewModel = new QuizViewModel();
         public TakeQuizViewModel()
@@ -78,7 +78,7 @@ namespace QuizManager.Models
             Answer dbSelectedAnswer = QuizEntities.Answers.Where(x => x.Id == selectedAnswer.Id).Single();
             UsersAnswers.Add(question, dbSelectedAnswer);
         }
-        public void CheckUsersAnswers(Dictionary<Question,Answer> usersAnswers)
+        public void CheckUsersAnswers(Dictionary<Question, Answer> usersAnswers)
         {
             List<Answer> CorrectAnswers = new List<Answer>();
             List<Answer> IncorrectAnswers = new List<Answer>();
@@ -93,8 +93,8 @@ namespace QuizManager.Models
                     IncorrectAnswers.Add(answer.Value);
                 }
             }
-            int totalQuestions = IncorrectAnswers.Count + CorrectAnswers.Count;
-            int passPercentage = (CorrectAnswers.Count / totalQuestions) * 100;
+            decimal totalQuestions = IncorrectAnswers.Count + CorrectAnswers.Count;
+            decimal passPercentage = Math.Round((CorrectAnswers.Count / totalQuestions) * 100, 0);
 
             if (CorrectAnswers.Count >= CurrentQuiz.PassMark)
             {

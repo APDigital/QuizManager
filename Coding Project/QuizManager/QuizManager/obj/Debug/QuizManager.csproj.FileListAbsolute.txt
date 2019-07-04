@@ -59,3 +59,4 @@ C:\Users\APearson\Documents\Apprenticeship Evidence\Year 2\Coding Project\Code\C
 C:\Users\APearson\Documents\Apprenticeship Evidence\Year 2\Coding Project\Code\Coding Project\QuizManager\QuizManager\obj\Debug\QuizManager.csproj.CoreCompileInputs.cache
 C:\Users\APearson\Documents\Apprenticeship Evidence\Year 2\Coding Project\Code\Coding Project\QuizManager\QuizManager\obj\Debug\QuizManager.dll
 C:\Users\APearson\Documents\Apprenticeship Evidence\Year 2\Coding Project\Code\Coding Project\QuizManager\QuizManager\obj\Debug\QuizManager.pdb
+C:\Users\APearson\Documents\Apprenticeship Evidence\Year 2\Coding Project\Code\Coding Project\QuizManager\QuizManager\obj\Debug\QuizManager.csprojResolveAssemblyReference.cache
