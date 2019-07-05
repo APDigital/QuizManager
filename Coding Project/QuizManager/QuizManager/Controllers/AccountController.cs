@@ -54,9 +54,23 @@ namespace QuizManager.Controllers
 
         //
         // GET: /Account/Login
+        //To Precompile Users, Make Method Async
         [AllowAnonymous]
         public ActionResult Login()
         {
+            //RegisterViewModel registerViewModel = new RegisterViewModel();
+            //PrecompileUsers precompileUsers = new PrecompileUsers();
+            //precompileUsers.ConvertCSVToUsers();
+            //foreach (RegisterViewModel userDetails in precompileUsers.Users)
+            //{
+            //    if (ModelState.IsValid)
+            //    {
+            //        var user = new ApplicationUser { UserName = userDetails.Email, Email = userDetails.Email };
+            //        var result = await UserManager.CreateAsync(user, userDetails.Password);
+
+            //        await UserManager.AddToRoleAsync(user.Id, userDetails.Role);
+            //    }
+            //}
             return View();
         }
 
